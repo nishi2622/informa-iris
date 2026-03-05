@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f5f5;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.headerRight {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.registerBtn {
+  background: #0a58ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.banner {
+  max-width: 1100px;
+  margin: 30px auto;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+}
+
+.left {
+  flex: 2;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+  color: #666;
+  margin: 20px 0;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+.sponsorLogos {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.speakers {
+  margin-top: 40px;
+}
+
+.speakerList {
+  display: flex;
+  gap: 30px;
+}
+
+.speaker {
+  text-align: center;
+}
+
+.speaker img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.formBox {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  height: fit-content;
+}
+
+.formBox input,
+.formBox select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.socialButtons button {
+  flex: 1;
+  padding: 8px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 12px;
+  background: #ffb400;
+  border: none;
+  font-weight: bold;
+}
