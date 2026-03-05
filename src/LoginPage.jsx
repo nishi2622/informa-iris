@@ -6,11 +6,6 @@ const LoginPage = () => {
       {/* HEADER */}
       <header className="header">
         <div className="logo">NRN</div>
-
-        <div className="headerRight">
-          <button className="registerBtn">REGISTER</button>
-          <span className="signin">Sign in</span>
-        </div>
       </header>
 
       {/* BANNER */}
@@ -99,38 +94,7 @@ const LoginPage = () => {
 
         {/* RIGHT SIDE FORM */}
 
-        {/* <div className="formBox">
-          <h3>Sign up</h3>
-
-          <div className="socialButtons">
-            <button>LinkedIn</button>
-            <button>Google</button>
-          </div>
-
-          <input placeholder="Email Address" />
-          <input placeholder="First Name" />
-          <input placeholder="Last Name" />
-          <input placeholder="Title" />
-          <input placeholder="Company" />
-
-          <select>
-            <option>Country</option>
-            <option>USA</option>
-            <option>Canada</option>
-          </select>
-
-          <input placeholder="Business Phone" />
-
-          <select>
-            <option>Primary Responsibility</option>
-          </select>
-
-          <select>
-            <option>Number of Units</option>
-          </select>
-
-          <button className="submitBtn">SUBMIT</button>
-        </div> */}
+        <div className="formBox"></div>
       </div>
     </div>
   );
