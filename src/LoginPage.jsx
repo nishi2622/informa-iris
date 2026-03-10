@@ -153,7 +153,7 @@ const LoginPage = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="right">
+        <div className="right" style={{ textAlign: "start" }}>
           <div id="auth-container"></div>
         </div>
       </div>
