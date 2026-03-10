@@ -24,21 +24,21 @@ const LoginPage = () => {
         clearInterval(pollTimer);
         console.log("SDK Ready! Rendering AuthForm...");
 
-        try {
-          const formHtml = await window.IIRISPassport.getRegistrationForm({
-            containerId: "auth-container",
-            responseType: "code",
-          });
-          console.log(formHtml);
-          // container.innerHTML = formHtml;
-          console.log("✅ Unified Auth form rendered successfully.");
-          // setloading(false);
-        } catch (error) {
-          console.error("❌ Error rendering unified auth form:", error);
-          authContainer.innerHTML =
-            '<div style="color: red; padding: 20px;">Error loading authentication form. Please refresh.</div>';
-          // setloading(false);
-        }
+        // try {
+        //   const formHtml = await window.IIRISPassport.getRegistrationForm({
+        //     containerId: "auth-container",
+        //     responseType: "code",
+        //   });
+        //   console.log(formHtml);
+        //   // container.innerHTML = formHtml;
+        //   console.log("✅ Unified Auth form rendered successfully.");
+        //   // setloading(false);
+        // } catch (error) {
+        //   console.error("❌ Error rendering unified auth form:", error);
+        //   authContainer.innerHTML =
+        //     '<div style="color: red; padding: 20px;">Error loading authentication form. Please refresh.</div>';
+        //   // setloading(false);
+        // }
         return;
       }
 
@@ -154,7 +154,7 @@ const LoginPage = () => {
 
         {/* RIGHT SIDE FORM */}
         <div className="right" style={{ textAlign: "start" }}>
-          <div id="auth-container"></div>
+          {/* <div id="auth-container"></div> */}
         </div>
       </div>
     </div>
