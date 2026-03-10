@@ -1,6 +1,67 @@
+import { useEffect } from "react";
 import "./login.css";
 
 const LoginPage = () => {
+  const waitForSDKAndRenderForm = () => {
+    const maxWaitTime = 10000; // 10 seconds
+    const pollInterval = 100; // Check every 100ms
+    let elapsedTime = 0;
+    const authContainer = document.getElementById("auth-container");
+    if (!authContainer) {
+      console.warn("auth-container element not found");
+      return;
+    }
+
+    const pollTimer = setInterval(async () => {
+      elapsedTime += pollInterval;
+
+      console.log(window.IIRISPassport);
+      // console.log(React.version);
+      if (
+        window.IIRISPassport &&
+        typeof window.IIRISPassport.getRegistrationForm === "function"
+      ) {
+        clearInterval(pollTimer);
+        console.log("SDK Ready! Rendering AuthForm...");
+
+        try {
+          const formHtml = await window.IIRISPassport.getRegistrationForm({
+            containerId: "auth-container",
+            responseType: "code",
+          });
+          console.log(formHtml);
+          // container.innerHTML = formHtml;
+          console.log("✅ Unified Auth form rendered successfully.");
+          // setloading(false);
+        } catch (error) {
+          console.error("❌ Error rendering unified auth form:", error);
+          authContainer.innerHTML =
+            '<div style="color: red; padding: 20px;">Error loading authentication form. Please refresh.</div>';
+          // setloading(false);
+        }
+        return;
+      }
+
+      // Timeout protection
+      if (elapsedTime >= maxWaitTime) {
+        clearInterval(pollTimer);
+        console.error(
+          "❌ SDK initialization timeout (10 seconds). SDK not available.",
+        );
+        console.log("window.IIRISPassport:", window.IIRISPassport);
+        authContainer.innerHTML =
+          '<div style="color: red; padding: 20px;">Authentication form failed to load. Please refresh the page.</div>';
+        // setloading(false);
+      }
+    }, pollInterval);
+  };
+
+  useEffect(() => {
+    console.log("window---", window);
+    // loadAuth(window);
+    waitForSDKAndRenderForm();
+  }, []);
+
   return (
     <div className="page">
       {/* HEADER */}
@@ -52,7 +113,6 @@ const LoginPage = () => {
           </ul>
 
           {/* SPONSORS */}
-
           <div className="sponsors">
             <h3>Sponsored by</h3>
 
@@ -93,8 +153,9 @@ const LoginPage = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-
-        <div className="formBox"></div>
+        <div className="right">
+          <div id="auth-container"></div>
+        </div>
       </div>
     </div>
   );
