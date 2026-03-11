@@ -91,3 +91,9 @@ ul {
   height: 90px;
   border-radius: 50%;
 }
+
+#auth-container div div {
+  padding: 12px !important;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+}
