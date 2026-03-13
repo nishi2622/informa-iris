@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./login.css";
 
 const LoginPage = () => {
+  const [loggedIn, setLoggedin] = useState(false);
+  const [toastData, setToastData] = useState({});
+
   const waitForSDKAndRenderForm = () => {
     const maxWaitTime = 10000; // 10 seconds
     const pollInterval = 100; // Check every 100ms
@@ -61,6 +64,41 @@ const LoginPage = () => {
     // loadAuth(window);
     waitForSDKAndRenderForm();
   }, []);
+
+  useEffect(() => {
+    if (
+      window.IIRISPassport &&
+      window.IIRISPassport.irisLoginCallback === "function" &&
+      window.IIRISPassport.irisLoginCallback.success
+    ) {
+      console.log(window.IIRISPassport.irisLoginCallback);
+      setToastData({
+        show: true,
+        message:
+          window.IIRISPassport.irisLoginCallback?.data?.message ||
+          window.IIRISPassport.irisLoginCallback?.error?.message,
+      });
+      if (window.IIRISPassport.irisLoginCallback.success == true) {
+        setLoggedin(true);
+      }
+    }
+  }, [window.IIRISPassport.irisLoginCallback]);
+
+  useEffect(() => {
+    if (
+      window.IIRISPassport &&
+      window.IIRISPassport.irisRegisterCallback === "function" &&
+      window.IIRISPassport.irisRegisterCallback.success
+    ) {
+      console.log(window.IIRISPassport.irisRegisterCallback);
+      setToastData({
+        show: true,
+        message:
+          window.IIRISPassport.irisRegisterCallback?.data?.message ||
+          window.IIRISPassport.irisRegisterCallback?.error?.message,
+      });
+    }
+  }, [window.IIRISPassport.irisRegisterCallback]);
 
   return (
     <div className="page">
