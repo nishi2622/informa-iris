@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const { userName } = props;
   const [activeNav, setActiveNav] = useState("dashboard");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [userName, setUserName] = useState("Nishi");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

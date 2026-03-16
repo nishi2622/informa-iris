@@ -1,8 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./login.css";
+import { Snackbar, CircularProgress } from "@mui/material";
 
-const LoginPage = () => {
-  console.log("window---", window);
+const LoginPage = (props) => {
+  const { setLoggedin, setUserName, loading, setloading } = props;
+  const [showToast, setToastData] = useState({
+    show: false,
+    message: "",
+  });
+
+  const resetToast = () => {
+    setTimeout(() => {
+      setToastData({
+        show: false,
+        message: null,
+      });
+    }, 2000);
+  };
   const waitForSDKAndRenderForm = () => {
     const maxWaitTime = 10000; // 10 seconds
     const pollInterval = 100; // Check every 100ms
@@ -17,7 +31,6 @@ const LoginPage = () => {
       elapsedTime += pollInterval;
 
       console.log(window.IIRISPassport);
-      // console.log(React.version);
       if (
         window.IIRISPassport &&
         typeof window.IIRISPassport.getRegistrationForm === "function"
@@ -31,7 +44,6 @@ const LoginPage = () => {
             responseType: "code",
           });
           console.log(formHtml);
-          // container.innerHTML = formHtml;
           console.log("✅ Unified Auth form rendered successfully.");
           // setloading(false);
         } catch (error) {
@@ -66,12 +78,43 @@ const LoginPage = () => {
   useEffect(() => {
     const handleIrisEvent = (event) => {
       if (event.detail.type === "login") {
-        const { success, ...data } = event.detail.payload;
-        if (success) alert("Success!!!");
-        else alert("Error");
+        const { success, ...logindata } = event.detail.payload;
+        console.log("success--", event.detail, success, logindata);
+        if (success) {
+          setToastData({
+            show: true,
+            message: logindata.data?.message || "User logged in Successfully",
+          });
+          resetToast();
+          console.log("Detected login response", logindata);
+          setLoggedin(true);
+          setUserName(logindata.data?.user || "");
+        } else {
+          setToastData({
+            show: true,
+            message: logindata.error?.message,
+          });
+          resetToast();
+        }
+      } else if (event.detail.type === "signup") {
+        const { success, ...signupdata } = event.detail.payload;
+        console.log("success--", event.detail, success, signupdata);
+        if (success) {
+          setToastData({
+            show: true,
+            message: signupdata.data?.message || "User signed in Successfully",
+          });
+          resetToast();
+          console.log("Detected signin response", signupdata);
+        } else {
+          setToastData({
+            show: true,
+            message: signupdata.error?.message,
+          });
+          resetToast();
+        }
       }
     };
-
     window.addEventListener("irisAuthEvent", handleIrisEvent);
     return () => window.removeEventListener("irisAuthEvent", handleIrisEvent);
   }, []);
@@ -168,9 +211,22 @@ const LoginPage = () => {
 
         {/* RIGHT SIDE FORM */}
         <div className="right" style={{ textAlign: "start" }}>
+          {loading == true && (
+            <div className="rightLoader">
+              <CircularProgress />
+            </div>
+          )}
           <div id="auth-container"></div>
         </div>
       </div>
+
+      {showToast.show ? (
+        <Snackbar
+          open={showToast.show}
+          autoHideDuration={2000}
+          message={showToast.message}
+        />
+      ) : null}
     </div>
   );
 };
