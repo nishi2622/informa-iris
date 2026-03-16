@@ -10,14 +10,14 @@ function App() {
   return (
     <div className="App">
       {isloggedin ? (
+        <Dashboard userName={userName} />
+      ) : (
         <LoginPage
           setLoggedin={setLoggedin}
           setUserName={setUserName}
           loading={loading}
           setloading={setloading}
         />
-      ) : (
-        <Dashboard userName={userName} />
       )}
     </div>
   );
