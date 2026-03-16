@@ -63,6 +63,19 @@ const LoginPage = () => {
     waitForSDKAndRenderForm();
   }, []);
 
+  useEffect(() => {
+    const handleIrisEvent = (event) => {
+      if (event.detail.type === "login") {
+        const { success, ...data } = event.detail.payload;
+        if (success) console.log("success--", data);
+        else console.log("success--", data.error);
+      }
+    };
+
+    window.addEventListener("irisAuthEvent", handleIrisEvent);
+    return () => window.removeEventListener("irisAuthEvent", handleIrisEvent);
+  }, []);
+
   return (
     <div className="page">
       {/* HEADER */}
