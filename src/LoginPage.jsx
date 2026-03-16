@@ -220,13 +220,13 @@ const LoginPage = (props) => {
         </div>
       </div>
 
-      {/* {showToast.show ? (
+      {showToast.show ? (
         <Snackbar
           open={showToast.show}
           autoHideDuration={2000}
           message={showToast.message}
         />
-      ) : null} */}
+      ) : null}
     </div>
   );
 };
