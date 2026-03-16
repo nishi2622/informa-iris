@@ -67,8 +67,8 @@ const LoginPage = () => {
     const handleIrisEvent = (event) => {
       if (event.detail.type === "login") {
         const { success, ...data } = event.detail.payload;
-        if (success) console.log("success--", data);
-        else console.log("success--", data.error);
+        if (success) alert("Success!!!");
+        else alert("Error");
       }
     };
 
