@@ -6,7 +6,7 @@ import LoginPage from "./LoginPage";
 function App() {
   const [isloggedin, setLoggedin] = useState(false);
   const [userName, setUserName] = useState("");
-  const [loading, setloading] = useState(true);
+  // const [loading, setloading] = useState(true);
   return (
     <div className="App">
       {isloggedin ? (
@@ -15,8 +15,7 @@ function App() {
         <LoginPage
           setLoggedin={setLoggedin}
           setUserName={setUserName}
-          loading={loading}
-          setloading={setloading}
+          // loading={loading}
         />
       )}
     </div>

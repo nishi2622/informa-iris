@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./login.css";
-import { Snackbar, CircularProgress } from "@mui/material";
+// import { Snackbar, CircularProgress } from "@mui/material";
 
 const LoginPage = (props) => {
-  const { setLoggedin, setUserName, loading, setloading } = props;
+  const { setLoggedin, setUserName } = props;
   const [showToast, setToastData] = useState({
     show: false,
     message: "",
@@ -211,22 +211,22 @@ const LoginPage = (props) => {
 
         {/* RIGHT SIDE FORM */}
         <div className="right" style={{ textAlign: "start" }}>
-          {loading == true && (
+          {/* {loading == true && (
             <div className="rightLoader">
               <CircularProgress />
             </div>
-          )}
+          )} */}
           <div id="auth-container"></div>
         </div>
       </div>
 
-      {showToast.show ? (
+      {/* {showToast.show ? (
         <Snackbar
           open={showToast.show}
           autoHideDuration={2000}
           message={showToast.message}
         />
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
