@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/informa-iris/static/css/main.7de312a2.css",
-    "main.js": "/informa-iris/static/js/main.5afd5b11.js",
+    "main.js": "/informa-iris/static/js/main.4288b6fa.js",
     "static/js/453.38f3d4a6.chunk.js": "/informa-iris/static/js/453.38f3d4a6.chunk.js",
     "index.html": "/informa-iris/index.html",
     "main.7de312a2.css.map": "/informa-iris/static/css/main.7de312a2.css.map",
-    "main.5afd5b11.js.map": "/informa-iris/static/js/main.5afd5b11.js.map",
+    "main.4288b6fa.js.map": "/informa-iris/static/js/main.4288b6fa.js.map",
     "453.38f3d4a6.chunk.js.map": "/informa-iris/static/js/453.38f3d4a6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7de312a2.css",
-    "static/js/main.5afd5b11.js"
+    "static/js/main.4288b6fa.js"
   ]
 }
